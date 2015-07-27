@@ -1,0 +1,2 @@
+module CoureursHelper
+end

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Coureurs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pseudo</th>
+      <th>Ville</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @coureurs.each do |coureur| %>
+      <tr>
+        <td><%= coureur.pseudo %></td>
+        <td><%= coureur.ville %></td>
+        <td><%= coureur.user %></td>
+        <td><%= link_to 'Show', coureur %></td>
+        <td><%= link_to 'Edit', edit_coureur_path(coureur) %></td>
+        <td><%= link_to 'Destroy', coureur, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Coureur', new_coureur_path %>

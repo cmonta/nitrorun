@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pseudo:</strong>
+  <%= @coureur.pseudo %>
+</p>
+
+<p>
+  <strong>Ville:</strong>
+  <%= @coureur.ville %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @coureur.user %>
+</p>
+
+<%= link_to 'Edit', edit_coureur_path(@coureur) %> |
+<%= link_to 'Back', coureurs_path %>
