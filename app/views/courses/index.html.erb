@@ -2,7 +2,7 @@
 
 <h1>Listing Courses</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Nom</th>
@@ -25,10 +25,10 @@
         <td><%= course.description %></td>
         <td><%= course.url %></td>
         <td><%= link_to 'Show', course %></td>
+        <% if user_signed_in? %>
         <td><%= link_to 'Edit', edit_course_path(course) %></td>
         <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% if user_signed_in? %>
-        <td><%= link_to 'Inscription', course %></td>
+        <td><%= link_to 'Inscription', register_course_path(course, :userid => current_user) %></td>
         <% end %>
       </tr>
     <% end %>
@@ -38,3 +38,4 @@
 <br>
 
 <%= link_to 'New Course', new_course_path %>
+<%= link_to 'Sign out', destroy_user_session_path, method: :delete %>

@@ -10,6 +10,7 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
+    @nbre = Course.find_by_id(params[:id]).coureurs.count
   end
 
   # GET /courses/new
@@ -61,6 +62,34 @@ class CoursesController < ApplicationController
     end
   end
 
+    
+  # GET /vendors/1/register?clientid=1
+  # Register a client to a vendor
+  def register
+
+    @course = Course.find(params[:id])
+    @coureur = Coureur.find(params[:userid])
+
+    # Register a client if it is not registered already
+    unless @course.registered?(@coureur)
+      # Add vendor to a client's vendor list
+      @coureur.courses << @course
+      flash[:notice] = 'User register with the course successfully'
+    else
+      flash[:error] = 'User already registered'
+    end
+    # Redirect to the action "clients"
+    # Redirect to /vendors/1/clients for vendor id 1
+    redirect_to :action => :coureurs, :id => @course
+  end
+
+  # Display all clients of a vendor
+  # GET /vendors/1/clients
+  def coureurs
+    @coureurs = Course.find(params[:id]).coureurs
+    @name = Course.find(params[:id]).nom
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_course

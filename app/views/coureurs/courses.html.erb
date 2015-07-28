@@ -1,0 +1,19 @@
+<h1>Liste des inscriptions</h1>
+
+<h2><%= @name %></h2>
+
+<table>
+  <tr>
+    <th>Course</th>
+    <th>Ville</th>
+  </tr>
+  
+  <% @courses.each do |course| %>
+  <tr>
+    <td><%= course.nom %></td>
+    <td><%= course.ville %></td>
+  </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Coureurs', coureurs_path %>

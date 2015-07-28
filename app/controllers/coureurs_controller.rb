@@ -1,5 +1,6 @@
 class CoureursController < ApplicationController
   before_action :set_coureur, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except:  [:index, :show, :courses]
 
   # GET /coureurs
   # GET /coureurs.json
@@ -61,6 +62,11 @@ class CoureursController < ApplicationController
     end
   end
 
+  def courses
+    @courses = Coureur.find(params[:id]).courses
+    @name = Coureur.find(params[:id]).pseudo
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_coureur
@@ -71,4 +77,5 @@ class CoureursController < ApplicationController
     def coureur_params
       params.require(:coureur).permit(:pseudo, :ville, :user_id)
     end
+  
 end

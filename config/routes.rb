@@ -1,6 +1,19 @@
 Rails.application.routes.draw do
-  resources :coureurs
-  resources :courses
+  resources :coureurs do
+    member do
+      get 'courses'
+    end
+  end
+
+resources :courses do
+    member do
+      get 'register'
+    end
+    member do
+      get 'coureurs'
+    end
+  end
+  
   get 'home/index'
 
   devise_for :users

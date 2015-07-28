@@ -2,7 +2,7 @@
 
 <h1>Listing Coureurs</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Pseudo</th>
@@ -17,10 +17,13 @@
       <tr>
         <td><%= coureur.pseudo %></td>
         <td><%= coureur.ville %></td>
-        <td><%= coureur.user %></td>
+        <td><%= coureur.user_id %></td>
         <td><%= link_to 'Show', coureur %></td>
+        <% if current_user && coureur.user_id == current_user.id %>
         <td><%= link_to 'Edit', edit_coureur_path(coureur) %></td>
         <td><%= link_to 'Destroy', coureur, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+        <td><%= link_to 'Courses', courses_coureur_path(coureur) %></td>
       </tr>
     <% end %>
   </tbody>

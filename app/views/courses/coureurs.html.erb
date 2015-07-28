@@ -1,0 +1,22 @@
+<h1>Listing Course's users</h1>
+
+<h2><%= @name %></h2>
+
+<table>
+  <tr>
+    <th>Course user name</th>
+    <th>Course user email</th>
+  </tr>
+
+  <% @coureurs.each do |coureur| %>
+  <tr>
+    <td><%= coureur.pseudo %></td>
+    <td><%= coureur.id %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New course', new_course_path %> | 
+<%= link_to 'Liste des courses', courses_path %>

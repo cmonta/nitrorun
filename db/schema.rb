@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150727105016) do
+ActiveRecord::Schema.define(version: 20150727142758) do
 
   create_table "coureurs", force: :cascade do |t|
     t.string   "pseudo",     limit: 255
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 20150727105016) do
   end
 
   add_index "coureurs", ["user_id"], name: "index_coureurs_on_user_id", using: :btree
+
+  create_table "coureurs_courses", id: false, force: :cascade do |t|
+    t.integer "coureur_id", limit: 4, null: false
+    t.integer "course_id",  limit: 4, null: false
+  end
+
+  add_index "coureurs_courses", ["coureur_id", "course_id"], name: "index_coureurs_courses_on_coureur_id_and_course_id", unique: true, using: :btree
 
   create_table "courses", force: :cascade do |t|
     t.string   "nom",         limit: 255
